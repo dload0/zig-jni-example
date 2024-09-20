@@ -1,0 +1,10 @@
+# Gradle.
+.gradle/
+gradle/
+build/
+
+# IntelliJ.
+.idea/
+
+# Native file.
+src/main/resources/zig_jni_native_example.dll

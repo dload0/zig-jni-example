@@ -1,0 +1,25 @@
+.{
+    // Name of the project.
+    .name = "zig-jni-example",
+
+    // Arbitrary version.
+    .version = "1.0.0",
+
+    .dependencies = .{
+        .JNI = .{
+            // The url to the release of the module dependency.
+            .url = "https://github.com/SuperIceCN/Zig-JNI/archive/refs/tags/v0.0.8.tar.gz",
+
+            // This hash corresponds to the hash of the downloaded version of the library. If you change
+            // the URL above this to a newer version you will have to change this hash (Zig will print
+            // it in the console if there is a has mismatch.)
+            .hash = "12203efe612266bf4d6cec7296f42f2be0c3168d1c47321e7084beb37c82d07c5732",
+        },
+    },
+
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+    },
+}

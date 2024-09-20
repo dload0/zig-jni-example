@@ -1,0 +1,33 @@
+plugins {
+    id("java")
+}
+
+group = "dev.dload"
+version = "1.0-SNAPSHOT"
+
+// Define the native paths.
+def nativeName = "zig_jni_native_example.dll"
+def nativePath = "${projectDir}/../zig-out/x86_64-windows/${nativeName}"
+
+// Copy the Zig native to the resources folder.
+tasks.register("copyNative", Copy) {
+    from nativePath
+    into "${projectDir}/src/main/resources"
+}
+
+// Ensure that the Zig native is copied before processing resources.
+processResources.dependsOn copyNative
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes(
+                "Main-Class": "dev.dload.NativeLoader",
+        )
+    }
+}
